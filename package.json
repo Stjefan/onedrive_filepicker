@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@pnp/picker-api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Provides an SDK to construct and interact with the OneDrive v8 Picker",
   "main": "dist/index.js",
   "types": "dist/",
