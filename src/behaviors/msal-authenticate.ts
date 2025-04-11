@@ -24,21 +24,23 @@ export function MSALAuthenticate(config: Configuration, scopes?: string[]): Time
                 } catch (e) {
 
                     // per examples we fall back to popup
-                    const resp = await app.loginPopup(authParams);
+                    console.log("Performing loginRedirect");
+                    const resp = await app.loginRedirect(authParams)
+                    // const resp = await app.loginPopup(authParams);
 
-                    if (resp.account) {
-                        app.setActiveAccount(resp.account);
-                    }
+                    // if (resp.account) {
+                    //     app.setActiveAccount(resp.account);
+                    // }
 
-                    if (resp.idToken) {
+                    // if (resp.idToken) {
 
-                        const resp2 = await app.acquireTokenSilent(authParams);
-                        accessToken = resp2.accessToken;
+                    //     const resp2 = await app.acquireTokenSilent(authParams);
+                    //     accessToken = resp2.accessToken;
 
-                    } else {
+                    // } else {
 
-                        this.error(e);
-                    }
+                    //     this.error(e);
+                    // }
                 }
 
                 if (accessToken) {
