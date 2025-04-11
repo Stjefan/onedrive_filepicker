@@ -14,18 +14,17 @@ export function MSALAuthenticate(config, scopes) {
                 }
                 catch (e) {
                     // per examples we fall back to popup
-                    console.log("Performing loginRedirect");
-                    const resp = await app.loginRedirect(authParams);
-                    // const resp = await app.loginPopup(authParams);
-                    // if (resp.account) {
-                    //     app.setActiveAccount(resp.account);
-                    // }
-                    // if (resp.idToken) {
-                    //     const resp2 = await app.acquireTokenSilent(authParams);
-                    //     accessToken = resp2.accessToken;
-                    // } else {
-                    //     this.error(e);
-                    // }
+                    const resp = await app.loginPopup(authParams);
+                    if (resp.account) {
+                        app.setActiveAccount(resp.account);
+                    }
+                    if (resp.idToken) {
+                        const resp2 = await app.acquireTokenSilent(authParams);
+                        accessToken = resp2.accessToken;
+                    }
+                    else {
+                        this.error(e);
+                    }
                 }
                 if (accessToken) {
                     this.log(`Returning token for auth type: '${command.type}'`, 0);
